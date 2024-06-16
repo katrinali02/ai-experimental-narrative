@@ -1,0 +1,34 @@
+[main]
+predicate Student ?who.
+# True if ?who is a student.
+# Write a rule to define Student in terms of IsA
+
+[main]
+predicate SameClub ?a ?b.
+# A and B are in the same club.
+# Write a rule for SameClub here
+
+[main]
+predicate LoveTriangle ?a ?b ?c.
+# A and B both have crushes on C
+# Write a rule here
+
+[main]
+predicate LovelessRelationship ?a ?b.
+# A and B are dating but not actually into each other
+# Write a rule here
+
+[main]
+predicate CheatingOn ?cheater ?cheatee.
+# A and B are dating, but A is also dating someone else!
+# Write a rule here
+
+[main]
+predicate PossibleRomance ?a ?b.
+# A and B are into each other and in the same club, but not presently dating
+# Write a rule here
+
+[main]
+predicate UnrequitedLove ?crusher ?crushee.
+# Crusher has an unrequired crush on crushee.
+UnrequitedLove ?a ?b: [CrushOn ?a ?b] [Not [CrushOn ?b ?a]]

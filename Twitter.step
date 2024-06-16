@@ -1,0 +1,78 @@
+# This tells step that pressing Alt-T/Option-T should run [Tweets]
+HotKey t "Print some tweets" [Tweets].
+
+# Print 6 tweets
+[main]
+Tweets: [Tweet] [Tweet] [Tweet] [Tweet] [Tweet] [Tweet]
+
+# Tweet
+# Print a tweet for a randomly selected plot point.
+Tweet: <b>Monster Highlights</b> [NewLine] @MonsterHighlights [NewLine] [ClearContext] [Event] [Paragraph]
+
+# Event
+# Generate a random plot point and print it.
+Event: [PlotPoint ?event] [PrintPlotPoint ?event]
+
+###
+### What you need to write
+###
+
+[randomly]
+predicate PlotPoint ?event.
+# ?event is a possible plot point in a Monster High episode given
+# the characters and their relationships.  Fill in methods for this,
+# below.
+
+[randomly]
+task PrintPlotPoint ?event.
+# Generate text to describe the specified plot point. Fill in methods
+# for this, below.
+
+
+###
+### Place your code below
+###
+
+#Part 2: Plot Points
+PlotPoint [hot_character ?who ?type]: [IsA ?who ?type]
+PlotPoint [confess_love ?a ?b]: [CrushOn ?a ?b] [Not [Dating ?a ?b]] [Not [Dating ?b ?a]]
+
+#? counts as additional plot point?
+PlotPoint [confess_love ?b ?a]: [CrushOn ?b ?a] [Not [Dating ?a ?b]] [Not [Dating ?b ?a]]
+
+PlotPoint [smoldering_look ?a ?b ?club]: [CrushOn ?a ?b] [CrushOn ?b ?a] [SameClub ?a ?b]
+PlotPoint [got_together ?a ?b]: [CrushOn ?a ?b] [CrushOn ?b ?a] [Not [Dating ?a ?b]]
+PlotPoint [breakup ?a ?b]: [Dating ?a ?b]
+PlotPoint [rejected ?a ?b]: [confess_love ?b ?a] [CrushOn ?b ?a] [Not [CrushOn ?a ?b]]
+
+#? ask about in office hours
+PlotPoint [conflict ?attacker ?defender [triangle ?attacker ?defender ?loveInterest]]: [LoveTriangle ?attacker ?defender ?loveInterest]
+PlotPoint [conflict ?cheatee ?cheater[cheating ?cheater ?cheetee ?other]]: [CheatingOnWith ?cheater ?cheatee ?other]
+PlotPoint [conflict ?cheatee ?other[cheating ?cheater ?cheetee ?other]]: [CheatingOnWith ?cheater ?cheatee ?other]
+    
+#? ask about in office hours
+PlotPoint [cheating ?a ?b]: [CheatingOn ?a ?b]
+PlotPoint [star_crossed_lovers ?a ?atype ?b ?btype]: [Dating ?a ?b] [RivalMonsterTypes ?a ?b]
+
+#need help with plotpoint generator testing
+
+#Part 3: Generating Text
+PrintPlotPoint[hot_character ?who ?type]: ?who is sooooo hot... like ?who just has the most amazing jawline <3!!
+PrintPlotPoint[confess_love ?a ?b]: OMG I'm so excited ?a confessed!! ?who should have done that so much earlier but I'm glad ?who did it eventually!
+PrintPlotPoint[smoldering_look ?a ?b ?club]: Did you see that look ?a gave ?b? I would've died if ?who gave me that look!!
+PrintPlotPoint[got_together ?a ?b]: FINALLY ?a and ?b got together!! I've been ROOTING for this ship since the beginning
+PrintPlotPoint[breakup ?a ?b]: CRYING SCREAMING AND THROWING UP RN. ?a and ?b broke up?!?!? I don't believe in love anymore.
+PrintPlotPoint[rejected ?a ?b]: NOOOOOOOOO how could ?a reject ?b like that?? ?a was perfect for ?who :/
+PrintPlotPoint[conflict ?attacker ?defender ?reason]: Soooo apparently ?attacker started a fight with ?defender because of their love triangle problem?? As they should!!
+PrintPlotPoint[cheating ?a ?b]: WHAT?!?! ?a is SUCH A CHEATING RASCAL. ?b deserves SO much better!!!
+PrintPlotPoint[star_crossed_lovers ?a ?atype ?b ?btype]: I'm so nervous for ?a and ?b!! I love them together so much and I don't want them to break up but I know it's inevitable because ?a is ?atype and ?b is ?btype :/
+
+#Part 4: More Plot Points
+
+#a dresses up for b to get b's attention - only happens if a and b have a chance to meet
+PlotPoint [dress_up ?a ?b]: [OpportunityToMeet ?a ?b]
+PrintPlotPoint [dress_up ?a ?b]: I'm all for going after what you want but ?a is doing too much just to look good for ?b - they might not even see each other that day!!
+
+#a is chasing after b - only happens if a likes b but not vice versa
+PlotPoint [chasing ?a ?b]: [UnrequitedLove ?a ?b]
+PrintPlotPoint [chasing ?a ?b]: I can't believe ?a is STILL chasing ?b! Replace, don't chase!!
