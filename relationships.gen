@@ -1,0 +1,36 @@
+#character types:
+reptile, bird, fish, insect, and mammal are kinds of characters.
+snake, lizard, and turtle are kinds of reptile.
+parrot, owl, and eagle are kinds of bird.
+salmon, dolphin, and shark are kinds of fish.
+dragonfly, butterfly, and grasshopper are kinds of insect.
+koala, lion, and otter are kinds of mammal.
+
+#traits: 2 adjectives each character type = 10 total
+characters can be big, medium, or small.
+
+insect can be annoying or boring.
+mammal can be nice or mean.
+fish can be fast or slow.
+reptile can be good or evil.
+bird can be smart or dumb.
+
+#relations: 2 verbs each type = 10 total verbs
+insect can fight other insect.
+insect can parent a bird.
+
+mammal can friend a fish.
+mammal can antagonize a fish.
+
+reptile can trick other reptile.
+reptile can eat a bird.
+
+fish can follow a bird.
+fish can deceive a insect.
+
+bird can exploit a insect.
+bird can play with a mammal.
+
+#all characters must relate to one other character.
+
+pressing "characters" means "imagine 8 characters"
